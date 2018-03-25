@@ -8,3 +8,10 @@ This Samples was written in python 3.5.2, This version need to be
 the exactly same, since tensorflow requirements, install, and add
 python to the path variable, then run `bin\prepare.bat` to prepare
 the environment
+
+### Known Issues ###
+
+#### Deprecated Methods ###
+
+Some of these methods are deprecated by the current tensorflow version,
+need to update
