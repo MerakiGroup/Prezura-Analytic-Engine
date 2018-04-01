@@ -6,10 +6,6 @@ import tensorflow as tf
 import matplotlib
 import matplotlib.pyplot as plt
 
-print(tf.__version__)
-print(np.__version__)
-print(matplotlib.__version__)
-
 input_1d_x = np.array([
     1, 2, 3.0, 4, 5, 126, 21, 33, 6, 127, 66, 23, 110, 4, 8, 33, 102
 ])
