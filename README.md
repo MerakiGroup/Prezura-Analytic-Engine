@@ -1,6 +1,6 @@
 ## PrezuraAnalyticEngine ##
 
-![logo](./docAssets/prezura_logo.jpg =50x50)
+<img src="docAssets/prezura_logo.png" height="50px" width="50px">
 
 Data Science Analytic Engine Model for the Prezura
 
