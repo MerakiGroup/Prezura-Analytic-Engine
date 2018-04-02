@@ -1,39 +1,26 @@
-from __future__ import division, print_function, unicode_literals
+# This is a boilerplate of clustering a 1d array, when only one attribute
+# is present in the data set (maybe a one pressure sensor). This is only
+# for the demonstration purpose, about how we are planing to identify
+# abnormalities of the data set since not enough data is not still present
+# for the Prezura analytic, this will generate a given number of centroid
+# in a 1d data set
 
-import numpy as np
+from __future__ import division, print_function, unicode_literals
+from tensorflow.contrib.learn.python.learn.estimators import kmeans
 import tensorflow as tf
 
-import matplotlib
-import matplotlib.pyplot as plt
-
-input_1d_x = np.array([
-    1, 2, 3.0, 4, 5, 126, 21, 33, 6, 127, 66, 23, 110, 4, 8, 33, 102
-])
 
 def input_fn_1d(input_1d):
+
+    # Convert a numpy array to a tensor object
     input_t = tf.convert_to_tensor(input_1d, dtype=tf.float32)
     input_t = tf.expand_dims(input_t, 1)
-
     return input_t, None
 
-plt.scatter(input_1d_x, np.zeros_like(input_1d_x), s=500)
-plt.show()
 
-from tensorflow.contrib.learn.python.learn.estimators import kmeans
-
-k_means_estimator = kmeans.KMeansClustering(num_clusters=3)
-
-fit = k_means_estimator.fit(input_fn=lambda: input_fn_1d(input_1d_x), steps=1000)
-
-clusters_1d = k_means_estimator.clusters()
-
-print(clusters_1d)
-
-fig = plt.figure()
-ax1 = fig.add_subplot(111)
-
-ax1.scatter(input_1d_x, np.zeros_like(input_1d_x),s=300, marker='o')
-ax1.scatter(clusters_1d, np.zeros_like(clusters_1d), c='r', s=200, marker='s')
-
-plt.show()
+def generate_cluster(data_set):
+    # Calculation of centroids
+    k_means_estimator = kmeans.KMeansClustering(num_clusters=3)
+    fit = k_means_estimator.fit(input_fn=lambda: input_fn_1d(data_set), steps=1000)
+    return k_means_estimator.clusters()
 

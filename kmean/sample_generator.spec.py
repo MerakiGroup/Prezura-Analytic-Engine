@@ -1,5 +1,7 @@
 import sample_generator
 import numpy as np
+import unittest
+import tensorflow as tf
 
 n_features = 2
 n_clusters = 3
@@ -9,7 +11,36 @@ embiggen_factor = 70
 
 np.random.seed(seed)
 
-centroids, samples = sample_generator.create_samples(n_clusters, n_samples_per_cluster, n_features, embiggen_factor, seed)
+centroids, samples = sample_generator.create_samples(
+    n_clusters,
+    n_samples_per_cluster,
+    n_features,
+    embiggen_factor,
+    seed
+)
 
-print(centroids)
-print(samples)
+model = tf.global_variables_initializer()
+
+with tf.Session() as session:
+    sample_values = session.run(samples)
+    centroid_values = session.run(centroids)
+    session.close()
+
+sample_generator.plot_clusters(sample_values, centroid_values, n_samples_per_cluster)
+
+
+class TestStringMethods(unittest.TestCase):
+
+    def setUp(self):
+        print("In method", self._testMethodName)
+
+    def test_centroid_validation(self):
+        self.assertEqual(centroids.shape, (3, 2))
+
+    def test_samples_validation(self):
+        self.assertEqual(samples.shape, (1500, 2))
+
+
+if __name__ == '__main__':
+    unittest.main()
+
