@@ -23,8 +23,17 @@ ax1.scatter(clusters_1d, np.zeros_like(clusters_1d), c='r', s=200, marker='s')
 
 plt.show()
 
+print('centroids: ', clusters_1d)
+
 
 class TestStringMethods(unittest.TestCase):
+
+    def setUp(self):
+        print("In method", self._testMethodName)
+
+    # Testing the length
+    def test_centroid_length(self):
+        self.assertTrue(len(clusters_1d), 3)
 
     # Testing if returned centroids are accurate
     def test_centroid_accuracy(self):

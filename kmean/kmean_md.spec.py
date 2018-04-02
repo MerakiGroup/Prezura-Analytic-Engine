@@ -1,4 +1,4 @@
-import sample_generator
+import kmean_md
 import numpy as np
 import unittest
 import tensorflow as tf
@@ -11,7 +11,7 @@ embiggen_factor = 70
 
 np.random.seed(seed)
 
-centroids, samples = sample_generator.create_samples(
+centroids, samples = kmean_md.create_samples(
     n_clusters,
     n_samples_per_cluster,
     n_features,
@@ -26,7 +26,7 @@ with tf.Session() as session:
     centroid_values = session.run(centroids)
     session.close()
 
-sample_generator.plot_clusters(sample_values, centroid_values, n_samples_per_cluster)
+kmean_md.plot_clusters(sample_values, centroid_values, n_samples_per_cluster)
 
 
 class TestStringMethods(unittest.TestCase):
