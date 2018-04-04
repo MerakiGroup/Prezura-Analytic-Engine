@@ -1,3 +1,7 @@
+# This module contain a keman clustering on a multidimensional data space
+# which need to be configured and validated after a accurate data validation
+# model is found
+
 import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
@@ -5,6 +9,15 @@ import matplotlib.pyplot as plt
 
 def create_samples(n_clusters, n_samples_per_cluster, n_features, embiggen_factor, seed):
 
+    """
+    Create a set of centroids and generate a sample dataset
+
+    :param n_clusters Number of clusters need to be generated
+    :param n_samples_per_cluster number of data points per cluster
+    :param n_features number of features
+    :param embiggen_factor embiggen factor of generating data
+    :param seed Used to create a random seed for the distribution
+    """
     np.random.seed(seed)
     slices = []
     centroids = []
@@ -28,6 +41,15 @@ def create_samples(n_clusters, n_samples_per_cluster, n_features, embiggen_facto
 
 
 def plot_clusters(all_samples, centroids, n_samples_per_cluster):
+
+    """
+    Displays the plot visualisation
+
+    :param all_samples: the data set
+    :param centroids: generated centroids
+    :param n_samples_per_cluster:  one cluster sample size
+    :return:
+    """
 
     # Plot out the different clusters
     # Choose a different colour for each cluster

@@ -11,6 +11,7 @@ embiggen_factor = 70
 
 np.random.seed(seed)
 
+# Generating sample
 centroids, samples = kmean_md.create_samples(
     n_clusters,
     n_samples_per_cluster,
@@ -21,6 +22,7 @@ centroids, samples = kmean_md.create_samples(
 
 model = tf.global_variables_initializer()
 
+# Tensorflow Executing the kmean generator
 with tf.Session() as session:
     sample_values = session.run(samples)
     centroid_values = session.run(centroids)
@@ -29,6 +31,7 @@ with tf.Session() as session:
 kmean_md.plot_clusters(sample_values, centroid_values, n_samples_per_cluster)
 
 
+# Test Start
 class TestStringMethods(unittest.TestCase):
 
     def setUp(self):

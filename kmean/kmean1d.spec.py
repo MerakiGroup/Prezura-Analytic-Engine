@@ -12,7 +12,9 @@ input_1d_x = np.array([
 plt.scatter(input_1d_x, np.zeros_like(input_1d_x), s=500)
 plt.show()
 
-clusters_1d = kmean1d.generate_cluster(input_1d_x)
+num_of_clusters = 3
+
+clusters_1d = kmean1d.generate_cluster(num_of_clusters, input_1d_x)
 
 # Creating the plot with centroids
 fig = plt.figure()
@@ -23,9 +25,8 @@ ax1.scatter(clusters_1d, np.zeros_like(clusters_1d), c='r', s=200, marker='s')
 
 plt.show()
 
-print('centroids: ', clusters_1d)
 
-
+# Test Start
 class TestStringMethods(unittest.TestCase):
 
     def setUp(self):
